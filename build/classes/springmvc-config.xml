@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+            http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+	<!-- 配置包扫描器，扫描@Controller注解的类 -->
+	<context:component-scan base-package="cn.edu.zucc.booklib.controller" />		
+	<!-- 加载注解驱动 -->
+	<mvc:annotation-driven>
+	     <!-- 消息转换器 -->
+	    <mvc:message-converters>
+	        <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+	        <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+	    </mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<mvc:default-servlet-handler/>
+	
+	<!-- 配置html视图解析器 -->
+	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath">
+            <value>/WEB-INF/html/</value>
+        </property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">1</prop>
+                <prop key="default_encoding">UTF-8</prop>   
+                <prop key="number_format">0.##</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="htmlviewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="suffix" value=".html" />
+        <property name="order" value="0"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean>
+    
+	<!-- 配置jsp视图解析器 -->
+    <!-- bean id="viewResolverJSP" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="3"/>
+    </bean> -->
+ 
+     <!--这里是对静态资源的映射,location必须为WebContent下目录-->
+    <mvc:resources mapping="/js/**" location="/js/" />
+    <mvc:resources mapping="/css/**" location="/css/" />
+    <mvc:resources mapping="/img/**" location="/img/" />
+    <mvc:resources mapping="/fonts/**" location="/fonts/" />
+       
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+    	<mvc:interceptor>
+	    	<mvc:mapping path="/**" />
+	    	<mvc:exclude-mapping path="/"/>
+	    	<mvc:exclude-mapping path="/index"/>
+	    	<mvc:exclude-mapping path="/category"/>
+	    	<mvc:exclude-mapping path="/books"/>
+	    	<mvc:exclude-mapping path="/detail"/>
+	    	<bean class="cn.edu.zucc.booklib.interceptor.LoginInterceptor" />
+    	</mvc:interceptor>
+    </mvc:interceptors>
+    
+</beans>

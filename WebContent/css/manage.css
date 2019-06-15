@@ -1,0 +1,88 @@
+.navbar-nav {
+	position: absolute !important;
+}
+.col-md-2 {
+	padding-left: 0;
+	padding-right: 0;
+}
+.nav li .return{
+	padding-left: 0;
+	padding-right: 0;
+}
+.nav li a {
+	font-size: 16px;
+}
+.nav li a:hover{
+	color: rgb(73,112,156) !important;
+}
+.nav .slash {
+	color: rgb(73,112,156);
+	margin-left: 15px;
+}
+.daohang .nav {
+	background-color: rgb(73,112,156);
+	height: 100%;
+}
+.daohang .nav a{
+	color: white;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+	background-color: #204D74;
+}
+.daohang .title {
+	font-size: 16px;
+	padding-left: 10px;
+	background-color: darkgrey;
+	margin-bottom: 30px;
+}
+.biaoti {
+	text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+}
+.search {
+	text-align: left;
+}
+.add {
+	position: absolute;
+	right: 5px;
+}
+.tab-content .tab-pane {
+	padding-left: 20px;
+}
+.table th,td {
+	text-align: center;
+	vertical-align: middle !important;
+}
+.table a {
+	text-decoration: none;
+}
+.table .edit {
+	color: green;
+}
+.table .delete {
+	color: red;
+}
+.table .fenge {
+	margin: 0 5px;
+}
+#content {
+	height: 100%;
+}
+.daohang {
+	height: 100%;
+}
+.nav {
+	height: 100%;
+	position: relative;
+}
+.copyright {
+	position: absolute;
+	bottom: 10px;
+	color: white;
+	padding-left: 10px;
+}
+img {
+	width: 80px;
+	height: 100px;
+}

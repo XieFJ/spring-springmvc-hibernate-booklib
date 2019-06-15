@@ -1,0 +1,120 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#page {
+	box-sizing: border-box;
+	min-height: 100%;
+	padding-bottom: 150px;
+}
+#bs-example-navbar-collapse-1 {
+	position: relative;
+}
+.navbar-nav {
+	position: absolute;
+	right: 0;
+	padding-right: 0 !important;
+}
+.navbar-default {
+	margin-bottom: 0px;
+}
+.navbar .container .navbar-brand {
+	height: 80px;
+	padding: 10px 15px;
+}
+.navbar-brand img {
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+}
+.navbar-brand span {
+	color: #269ABC;
+}
+.navbar-nav {
+	height: 80px;
+	padding: 10px 15px;
+}
+.dropdown .dropdown-menu a:hover {
+	color: #269ABC;
+}
+.navbar-nav .book-search{
+	height: 60px;
+	margin-bottom: 10px;
+}
+.navbar-nav .book-search span{
+	font-size: 18px;
+}
+.navbar-nav .book-search span:hover{
+	color: #269ABC;
+}
+.navbar-nav .dropdown-toggle span{
+	font-size: 18px;
+}
+.navbar-nav .dropdown-toggle span:hover{
+	color: #269ABC;
+}
+.navbar-nav .scan span{
+	font-size: 18px;
+}
+.navbar-nav .scan span:hover{
+	color: #269ABC;
+}
+.navbar-nav .dropdown-menu {
+	margin-top: 16px !important;
+}
+.carousel-inner .item img {
+	width: 800px;
+	height: 500px;
+	margin-left: 170px;
+}
+
+.footer {
+	background-color: rgb(73,112,156);
+	padding: 30px 0;
+	margin-top: -100px;
+	height: 100px;
+}
+.container-fluid {
+	padding: 0;
+}
+.footer .white_link a{
+	color: white;
+}
+.footer .license span{
+	color: white;
+}
+.slash {
+	color: white;
+	padding: 0 10px;
+}
+
+.search-link {
+	text-decoration: none !important;
+	color: #888888;
+}
+.search-info {
+	padding: 10px 10px;
+}
+.search-cover {
+	float: left;
+}
+.search-cover img {
+	width: 161px;
+	height: 200px;
+}
+.search-info .search-about {
+	display: flex;
+	padding: 0 20px;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 200px;
+}
+.search-info .search-about .search-name p{
+	margin-top: 0;
+	color: #000000;
+}
+.search-info .search-author-publisher p{
+	margin-top: 5px;
+	margin-bottom: 0px;
+}

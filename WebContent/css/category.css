@@ -1,0 +1,30 @@
+.title {
+	margin: 40px 0;
+}
+.cagetory-cover {
+	float: left;
+	width: 50%;
+}
+.cagetory-cover img {
+	width: 100%;
+	height: 180px;
+}
+.category-about {
+	float: left;
+	padding-left: 20px;
+}
+.category-info {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+.category-link {
+	text-decoration: none !important;
+	color: black;
+}
+.category-name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-height: 25px;
+}

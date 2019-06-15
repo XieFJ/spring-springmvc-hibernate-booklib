@@ -1,0 +1,883 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>manage</title>
+		
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/public.css" rel="stylesheet"/>
+		<link href="css/manage.css" rel="stylesheet" />
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-6">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="index">
+								<img alt="Brand" src="img/title.jpg">
+								<span class="h3"><strong>&nbsp; ZUCC LIBRARY </strong></span>
+							</a>
+						</div>
+					</div>			
+						
+					<div class="col-md-6">
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li>	
+									<a class="operator-name">欢迎您，<span id="operatorName"></span>管理员<span class="slash">|</span></a>
+								</li>								
+								<li class="scan">
+									<a href="logout">退出</a>
+								</li>
+							</ul>	
+						</div>
+					</div>	
+				</div>
+			</div>
+		</nav>
+
+		<div class="container" id="content">
+			<!-- <div style="height: 100px;"> -->
+				<div class="col-md-2 daohang">
+					<ul class="nav" id="vtab">
+						<li>
+							<a class="title"><span class="glyphicon glyphicon-th-list"></span> 后台管理操作栏</a>
+						</li>
+						<li class="active">
+							<a href="#tab1" data-toggle="tab">图书类别管理</a>
+						</li>
+						<li>
+							<a href="#tab2" data-toggle="tab">图书资料管理</a>
+						</li>
+						<li>
+							<a href="#tab3" data-toggle="tab">借阅记录管理</a>
+						</li>
+						<li>
+							<a href="#tab4" data-toggle="tab">读者类别管理</a>
+						</li>
+						<li>
+							<a href="#tab5" data-toggle="tab">读者资料管理</a>
+						</li>
+						<li>
+							<a href="#tab6" data-toggle="tab">用户管理</a>
+						</li>
+						<span class="copyright">@谢丰俊 胡欣逸&nbsp;2019</span>
+					</ul>
+				</div>
+				<div class="tab-content col-md-10">
+					<div class="tab-pane active" id="tab1">
+						<div class="row">
+							<table class="table table-bordered">
+								<tr>
+									<td class="biaoti">图书类别管理</td>
+								</tr>	
+								<tr>
+									<td class="search">
+										<form method="post" class="form-inline" autocomplete="off" id="searchBookType">
+											<div class="form-group">
+												<input type="text" class="form-control" id="booktypeName" name="booktypeName" placeholder="名称"/>
+											</div>
+											<button type="submit" class="btn btn-default">查找</button>
+											<button type="button" class="btn btn-success add" data-toggle="modal" data-target="#addBookType" id="addButton">添加图书类别</button>
+										</form>			
+									</td>
+								</tr>
+							</table>
+							<table class="table table-bordered" id="resultContent">
+								<thead>
+									<th>编号</th>
+									<th>类别名称</th>
+									<th>封面</th>
+									<th>操作</th>
+								</thead>
+								<tbody id="bookTypeContent">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab2">	
+						<div class="row">
+							<table class="table table-bordered">
+								<tr>
+									<td class="biaoti">图书资料管理</td>
+								</tr>	
+								<tr>
+									<td class="search">
+										<form method="post" class="form-inline" autocomplete="off" id="searchBook">
+											<div class="form-group">
+												<input type="text" class="form-control" id="bookName" name="bookName" placeholder="名称"/>
+												<input type="text" class="form-control" id="author" name="author" placeholder="作者"/>
+												<input type="text" class="form-control" id="bookTypeName" name="bookType.booktypeName" placeholder="类型"/>
+											</div>
+											<button type="submit" class="btn btn-default">查找</button>
+											<button type="button" class="btn btn-success add" data-toggle="modal" data-target="#addBook">添加图书资料</button>
+										</form>			
+									</td>
+								</tr>
+							</table>
+							<table class="table table-bordered" id="resultContent2">
+								<thead>
+									<th>编号</th>
+									<th>名称</th>
+									<th>类别</th>
+									<th>作者</th>
+									<th>出版社</th>
+									<th>库存</th>
+									<th>简介</th>
+									<th>封面</th>
+									<th>操作</th>
+								</thead>
+								<tbody id="bookContent">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab3">
+						<div class="row">
+							<table class="table table-bordered">
+								<tr>
+									<td class="biaoti">借阅记录管理</td>
+								</tr>	
+								<tr>
+									<td class="search">
+										<form method="post" class="form-inline" autocomplete="off" id="searchDetail">
+											<div class="form-group">
+												<input type="text" class="form-control" id="bookId" name="book.bookId" placeholder="图书编号"/>
+												<input type="text" class="form-control" id="readerId" name="reader.readerId" placeholder="读者编号"/>
+											</div>
+											<button type="submit" class="btn btn-default">查找</button>
+										</form>			
+									</td>
+								</tr>
+							</table>
+							<table class="table table-bordered" id="resultContent3">
+								<thead>
+									<th>记录编号</th>
+									<th>图书编号</th>
+									<th>图书名称</th>
+									<th>读者编号</th>
+									<th>读者名称</th>
+									<th>借阅时间</th>
+									<th>应还时间</th>
+									<th>罚金</th>
+								</thead>
+								<tbody id="detailContent">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab4">
+						<div class="row">
+							<table class="table table-bordered">
+								<tr>
+									<td class="biaoti">读者类别管理</td>
+								</tr>	
+								<tr>
+									<td class="search">
+										<form method="post" class="form-inline" autocomplete="off" id="searchReaderType">
+											<div class="form-group">
+												<input type="text" class="form-control" id="readertypeName" name="readertypeName" placeholder="名称"/>
+											</div>
+											<button type="submit" class="btn btn-default">查找</button>
+											<button type="button" class="btn btn-success add" data-toggle="modal" data-target="#addReaderType">添加读者类别</button>
+										</form>			
+									</td>
+								</tr>
+							</table>
+							<table class="table table-bordered" id="resultContent4">
+								<thead>
+									<th>编号</th>
+									<th>类别名称</th>
+									<th>借阅限额</th>
+									<th>借阅限时</th>
+									<th>操作</th>
+								</thead>
+								<tbody id="readertypeContent">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab5">
+						<div class="row">
+							<table class="table table-bordered">
+								<tr>
+									<td class="biaoti">读者资料管理</td>
+								</tr>	
+								<tr>
+									<td class="search">
+										<form method="post" class="form-inline" autocomplete="off" id="searchReader">
+											<div class="form-group">
+												<input type="text" class="form-control" id="readerName" name="readerName" placeholder="名称"/>
+												<input type="text" class="form-control" id="readertypeName" name="readerType.readertypeName" placeholder="类型"/>
+											</div>
+											<button type="submit" class="btn btn-default">查找</button>
+											<button type="button" class="btn btn-success add" data-toggle="modal" data-target="#addReader">添加读者资料</button>
+										</form>			
+									</td>
+								</tr>
+							</table>
+							<table class="table table-bordered" id="resultContent5">
+								<thead>
+									<th>编号</th>
+									<th>名称</th>
+									<th>类别</th>
+									<th>借阅数量</th>
+									<th>创建日期</th>
+									<th>操作</th>
+								</thead>
+								<tbody id="readerContent">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab6">
+						<div class="row">
+							<table class="table table-bordered">
+								<tr>
+									<td class="biaoti">用户管理</td>
+								</tr>	
+								<tr>
+									<td class="search">
+										<form method="post" class="form-inline" autocomplete="off" id="searchSystemUser">
+											<div class="form-group">
+												<input type="text" class="form-control" id="userName" name="userName" placeholder="名称"/>
+											</div>
+											<button type="submit" class="btn btn-default">查找</button>
+											<button type="button" class="btn btn-success add" data-toggle="modal" data-target="#addUser">添加用户</button>
+										</form>			
+									</td>
+								</tr>
+							</table>
+							<table class="table table-bordered" id="resultContent6">
+								<thead>
+									<th>编号</th>
+									<th>名称</th>
+									<th>创建日期</th>
+									<th>操作</th>
+								</thead>
+								<tbody id="systemUserContent">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+				
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="addBookType"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>添加图书类别</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="booktypeName_add" class="col-sm-2 control-label">类别名</label>
+										<div class="col-sm-9">
+											<input type="text" id="booktypeName_add" name="booktypeName" class="form-control well" placeholder="请输入类别名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="picture" class="col-sm-2 control-label">图片链接</label>
+										<div class="col-sm-9">
+											<input type="text" id="picture" name="picture" class="form-control well" placeholder="请输入图片链接"/>
+										</div>
+									</div>
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="queding">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>	
+		
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="editBookType"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>修改图书类别</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="booktypeName_edit" class="col-sm-2 control-label">类别名</label>
+										<div class="col-sm-9">
+											<input type="text" id="booktypeName_edit" name="booktypeName" class="form-control well" placeholder="请输入新类别名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="picture_edit" class="col-sm-2 control-label">图片链接</label>
+										<div class="col-sm-9">
+											<input type="text" id="picture_edit" name="picture" class="form-control well" placeholder="请输入新图片链接"/>
+										</div>
+									</div>
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="bianji">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>
+		
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="addBook"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>添加图书资料</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="bookname_add" class="col-sm-2 control-label">图书名</label>
+										<div class="col-sm-9">
+											<input type="text" id="bookname_add" name="bookName" class="form-control well" placeholder="请输入图书名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="typename_add" class="col-sm-2 control-label">图书类别</label>
+										<div class="col-sm-9">
+											<input type="text" id="typename_add" name="bookType.booktypeName" class="form-control well" placeholder="请输入类别名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="authorname_add" class="col-sm-2 control-label">作者</label>
+										<div class="col-sm-9">
+											<input type="text" id="authorname_add" name="author" class="form-control well" placeholder="请输入作者名称"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="publishername_add" class="col-sm-2 control-label">出版社</label>
+										<div class="col-sm-9">
+											<input type="text" id="publishername_add" name="publisher" class="form-control well" placeholder="请输入出版社名称"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="stocknumner_add" class="col-sm-2 control-label">库存量</label>
+										<div class="col-sm-9">
+											<input type="text" id="stocknumner_add" name="stockNumber" class="form-control well" placeholder="请输入库存量"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="booklink_add" class="col-sm-2 control-label">图片链接</label>
+										<div class="col-sm-9">
+											<input type="text" id="booklink_add" name="picture" class="form-control well" placeholder="请输入图片链接"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="bookintro_add" class="col-sm-2 control-label">简介</label>
+										<div class="col-sm-9">
+											<textarea class="form-control" id="bookintro_add" rows="4" name="introduction" placeholder="请输入图书简介"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="queding2">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>		
+		
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="editBook"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>修改图书资料</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="bookname_edit" class="col-sm-2 control-label">图书名</label>
+										<div class="col-sm-9">
+											<input type="text" id="bookname_edit" name="bookName" class="form-control well" placeholder="请输入图书名"/>
+										</div>
+									</div>
+									<!-- 
+									<div class="form-group">
+										<label for="typename_edit" class="col-sm-2 control-label">图书类别</label>
+										<div class="col-sm-9">
+											<input type="text" id="typename_edit" name="bookType.booktypeName" class="form-control well" placeholder="请输入类别名"/>
+										</div>
+									</div>
+									 -->
+									<div class="form-group">
+										<label for="authorname_edit" class="col-sm-2 control-label">作者</label>
+										<div class="col-sm-9">
+											<input type="text" id="authorname_edit" name="author" class="form-control well" placeholder="请输入作者名称"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="publishername_edit" class="col-sm-2 control-label">出版社</label>
+										<div class="col-sm-9">
+											<input type="text" id="publishername_edit" name="publisher" class="form-control well" placeholder="请输入出版社名称"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="stocknumner_edit" class="col-sm-2 control-label">库存量</label>
+										<div class="col-sm-9">
+											<input type="text" id="stocknumner_edit" name="stockNumber" class="form-control well" placeholder="请输入库存量"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="booklink_edit" class="col-sm-2 control-label">图片链接</label>
+										<div class="col-sm-9">
+											<input type="text" id="booklink_edit" name="picture" class="form-control well" placeholder="请输入图片链接"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="bookintro_edit" class="col-sm-2 control-label">简介</label>
+										<div class="col-sm-9">
+											<textarea class="form-control" id="bookintro_edit" name="introduction" rows="4" placeholder="请输入图书简介"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="bianji2">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>
+		
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="addReaderType"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>添加读者类别</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="readertypeName_add" class="col-sm-2 control-label">类别名</label>
+										<div class="col-sm-9">
+											<input type="text" id="readertypeName_add" name="readertypeName" class="form-control well" placeholder="请输入类别名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="lendLimitted_add" class="col-sm-2 control-label">借书限额</label>
+										<div class="col-sm-9">
+											<input type="text" id="lendLimitted_add" name="lendLimitted" class="form-control well" placeholder="请输入借书限额"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="duetime_add" class="col-sm-2 control-label">可借时长</label>
+										<div class="col-sm-9">
+											<input type="text" id="duetime_add" name="dueTime" class="form-control well" placeholder="请输入可借时长(单位/天)"/>
+										</div>
+									</div>
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="queding4">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>		
+
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="editReaderType"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>修改读者类别</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="readertypeName_edit" class="col-sm-2 control-label">类别名</label>
+										<div class="col-sm-9">
+											<input type="text" id="readertypeName_edit" name="readertypeName" class="form-control well" placeholder="请输入类别名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="lendLimitted_edit" class="col-sm-2 control-label">借书限额</label>
+										<div class="col-sm-9">
+											<input type="text" id="lendLimitted_edit" name="lendLimitted" class="form-control well" placeholder="请输入借书限额"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="dueTime_edit" class="col-sm-2 control-label">可借时长</label>
+										<div class="col-sm-9">
+											<input type="text" id="dueTime_edit" name="dueTime" class="form-control well" placeholder="请输入可借时长(单位/天)"/>
+										</div>
+									</div>
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="bianji4">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>
+
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="addReader"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>添加读者资料</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="readerName_add" class="col-sm-2 control-label">名称</label>
+										<div class="col-sm-9">
+											<input type="text" id="readerName_add" name="readerName" class="form-control well" placeholder="请输入读者名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="readertypeName2_add" class="col-sm-2 control-label">读者类别</label>
+										<div class="col-sm-9">
+											<!-- <input type="text" id="typename" name="typename" class="form-control well" placeholder="请输入类别名"/> -->
+											<select id="readertypeName2_add" class="form-control" name="readerType.readertypeName">
+												<option value="check1">老师</option>
+												<option value="check2">学生</option>
+											</select>
+										</div>
+									</div>
+									<!-- 
+									<div class="form-group">
+										<label for="password_add" class="col-sm-2 control-label">密码</label>
+										<div class="col-sm-9">
+											<input type="text" id="password_add" name="password" class="form-control well" placeholder="请输入密码"/>
+										</div>
+									</div>
+									 -->
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="queding5">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>
+		
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="editReader"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>修改读者资料</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="readerName_edit" class="col-sm-2 control-label">名称</label>
+										<div class="col-sm-9">
+											<input type="text" id="readerName_edit" name="readerName" class="form-control well" placeholder="请输入读者名称"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="readertypeName2_edit" class="col-sm-2 control-label">读者类别</label>
+										<div class="col-sm-9">
+											<!-- <input type="text" id="typename" name="typename" class="form-control well" placeholder="请输入类别名"/> -->
+											<select id="readertypeName2_edit" class="form-control" name="readerType.readertypeName">
+												<option>老师</option>
+												<option>学生</option>
+											</select>
+										</div>
+									</div>
+									<!-- 
+									<div class="form-group">
+										<label for="password_edit" class="col-sm-2 control-label">密码</label>
+										<div class="col-sm-9">
+											<input type="text" id="password_edit" name="password" class="form-control well" placeholder="请输入密码"/>
+										</div>
+									</div>
+									 -->
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="bianji5">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>
+
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="addUser"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>添加用户</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="userName" class="col-sm-2 control-label">用户名</label>
+										<div class="col-sm-9">
+											<input type="text" id="userName_add" name="userName" class="form-control well" placeholder="请输入用户名"/>
+										</div>
+									</div>
+									<!-- 
+									<div class="form-group">
+										<label for="typename" class="col-sm-2 control-label">用户类别</label>
+										<div class="col-sm-9">
+											<select class="form-control">
+												<option>系统管理员</option>
+												<option>图书管理员</option>
+											</select>
+										</div>
+									</div>
+									 -->
+									<div class="form-group">
+										<label for="password_add" class="col-sm-2 control-label">密码</label>
+										<div class="col-sm-9">
+											<input type="password" id="password_add" name="password" class="form-control well" placeholder="请输入密码"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="pwd" class="col-sm-2 control-label">确认密码</label>
+										<div class="col-sm-9">
+											<input type="password" id="password2_add" name="password2" class="form-control well" placeholder="请输入确认密码"/>
+										</div>
+									</div>
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="queding6">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>
+	
+		<div class="container">
+			<form method="post" action="#" class="form-horizontal" role="form" id="myForm" onsubmit="return ">
+				<div class="modal fade" id="editUser"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!--  定义模态框，过渡效果为淡入，id为myModal,tabindex=-1可以禁用使用tab切换，aria-labelledby用于引用模态框的标题，aria-hidden=true保持模态框在触发前窗口不可见  -->
+					<div class="modal-dialog">
+						<!--  显示模态框对话框模型（若不写下一个div则没有颜色）  -->
+						<div class="modal-content">
+							<!--  显示模态框白色背景，所有内容都写在这个div里面  -->
+	
+							<div class="btn-info modal-header">
+								<!--  模态框标题  -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<!--  关闭按钮  -->
+								<h4>修改用户</h4>
+								<!--  标题内容  -->
+							</div>
+	
+							<div class="modal-body">
+								<!--  模态框内容，我在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="userName_edit" class="col-sm-2 control-label">用户名</label>
+										<div class="col-sm-9">
+											<input type="text" id="userName_edit" name="userName" class="form-control well" placeholder="请输入用户名"/>
+										</div>
+									</div>
+									<!-- 
+									<div class="form-group">
+										<label for="typename" class="col-sm-2 control-label">用户类别</label>
+										<div class="col-sm-9">
+											<select class="form-control">
+												<option>系统管理员</option>
+												<option>图书管理员</option>
+											</select>
+										</div>
+									</div>
+									 -->
+									<div class="form-group">
+										<label for="password_edit" class="col-sm-2 control-label">密码</label>
+										<div class="col-sm-9">
+											<input type="text" id="password_edit" name="password" class="form-control well" placeholder="请输入密码"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="password2_edit" class="col-sm-2 control-label">确认密码</label>
+										<div class="col-sm-9">
+											<input type="text" id="password2_edit" name="password2" class="form-control well" placeholder="请输入确认密码"/>
+										</div>
+									</div>
+								</form>
+							</div>
+	
+							<div class="modal-footer">
+								<!--  模态框底部样式，一般是提交或者确定按钮 -->
+								<button type="submit" class="btn btn-info" id="bianji6">确定</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+	
+						</div><!-- /.modal-content -->
+					</div>
+				</div> <!-- /.modal -->
+			</form>
+		</div>
+		<script src="js/jquery-1.12.4.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/booklib.js" type="text/javascript"></script>
+		<script src="js/manage.js" type="text/javascript"></script>
+	</body>
+</html>

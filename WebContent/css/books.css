@@ -1,0 +1,28 @@
+.col-md-3 {
+	width: 20%;
+}
+.title {
+	margin: 40px 0;
+}
+.book-cover {
+	width: 162px;
+}
+.book-cover img {
+	width: 100%;
+	height: 200px;
+}
+.book-info {
+	padding: 10px 0;
+}
+.book-link {
+	text-decoration: none !important;
+	color: black;
+}
+.book-name {
+	font-weight: bold;
+	margin: 20px 0 8px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-height: 25px;
+}

@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>lendrecord</title>
+		
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/public.css" rel="stylesheet"/>
+		<link href="css/lendrecord.css" rel="stylesheet" />
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-6">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="index">
+								<img alt="Brand" src="img/title.jpg">
+								<span class="h3"><strong>&nbsp; ZUCC LIBRARY </strong></span>
+							</a>
+						</div>
+					</div>			
+						
+					<div class="col-md-6">
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li>	
+									<a class="book-search" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+										<span class="glyphicon glyphicon-search">书目检索</span>
+									</a>
+								</li>
+								<li class="dropdown">
+								  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									    <span class="glyphicon glyphicon-user">个人中心</span>
+								  </a>
+								  <ul class="dropdown-menu">
+									<li><a href="lendrecord"><span class="glyphicon glyphicon-tasks"></span>&nbsp;&nbsp;借书记录</a></li>
+									<li><a href="bookshelf"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;我的书架</a></li>
+									<li id="logout"><a href="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;退出</a></li>
+								  </ul>
+								</li>								
+								<li class="scan">
+								  <a href="category">
+									    <span class="glyphicon glyphicon-menu-hamburger">分类浏览</span>
+								  </a>
+								</li>
+							</ul>	
+						</div>
+					</div>	
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="collapse" id="collapseExample">
+				<div class="well" id="searchResult">
+					<form method="post" class="form-horizontal" role="form" >
+						<div class="input-group">
+						    <input type="text" name="content" id="searchContent" class="form-control" placeholder="Search for...">
+						    <span class="input-group-btn">
+							    <button class="btn btn-default" type="button" id="chazhao">Go!</button>
+						    </span>
+						</div>	
+					</form>					
+				</div>
+			</div>				
+		</div>
+			
+		<div class="container" id="page">
+			<div class="row">
+				<p class="h3 text-center title">--&nbsp;借阅记录&nbsp;--</p>
+				<table class="record-info">
+					<thead>
+						<tr>
+							<th>借阅编号</th>
+							<th>书名</th>
+							<th>索书号</th>
+							<th>借阅日期</th>
+							<th>应还日期</th>
+							<th>续借次数</th>
+							<th>续借</th>
+							<th>还书</th>
+						</tr>
+					</thead>
+					<tbody id="recordContent">
+						
+					</tbody>
+				</table>
+			</div>
+		</div>	
+		
+			
+		<div class="container-fluid" id="container-footer">
+			<div class="footer" align="center">
+				<div class="white_link">
+					<a href="http://10.61.2.6/">城院办公网</a><span class="slash">|</span>
+					<a href="http://libweb.zju.edu.cn/libweb/">浙大图书馆</a><span class="slash">|</span>
+					<a href="http://libweb.zucc.edu.cn/">城院图书馆</a><span class="slash">|</span>
+					<a href="http://ir.nsfc.gov.cn/">国家自然科学基金基础研究知识库</a><span class="slash">|</span>
+					<a href="http://www.nssd.org/">国家哲学社会科学学术期刊数据库</a><span class="slash">|</span>
+					<a href="http://gxtgw.zju.edu.cn/commlib/">省高校图情工委</a><span class="slash">|</span>
+					<a href="http://www.kjwx.zj.cn/zjwx/pages/index.jsp">省科技文献平台</a>
+				</div>
+				<div class="license">
+					<span>版权所有@谢丰俊 胡欣逸&nbsp;2019</span><span class="slash">|</span>
+					<span>联系电话&nbsp;15988108721</span><span class="slash">|</span>
+					<span>电子邮件&nbsp;31601186@stu.zucc.edu.cn </span>
+				</div>
+				
+			</div>
+		</div>			
+		<script src="js/jquery-1.12.4.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/booklib.js" type="text/javascript"></script>
+		<script src="js/lendrecord.js" type="text/javascript"></script>
+	</body>
+</html>
